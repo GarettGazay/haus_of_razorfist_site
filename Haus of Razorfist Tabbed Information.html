@@ -1,0 +1,262 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Haus of Razorfist Information</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f4f4f4;
+    }
+    .tab-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .tab-buttons {
+      display: flex;
+      border-bottom: 1px solid #ccc;
+    }
+    .tab-button {
+      flex: 1;
+      padding: 15px;
+      text-align: center;
+      cursor: pointer;
+      background-color: #f9f9f9;
+      border: none;
+      border-bottom: 2px solid transparent;
+      transition: background-color 0.3s, border-bottom 0.3s;
+    }
+    .tab-button:hover {
+      background-color: #e0e0e0;
+    }
+    .tab-button.active {
+      background-color: white;
+      border-bottom: 2px solid #007bff;
+      font-weight: bold;
+    }
+    .tab-content {
+      display: none;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-top: none;
+      border-radius: 0 0 8px 8px;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    h2 {
+      color: #333;
+      margin-top: 0;
+    }
+    ul, ol {
+      margin: 10px 0;
+      padding-left: 20px;
+    }
+    a {
+      color: #007bff;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="tab-container">
+    <div class="tab-buttons">
+      <button class="tab-button active" onclick="openTab('general')">General Info</button>
+      <button class="tab-button" onclick="openTab('vetting')">Vetting Process</button>
+      <button class="tab-button" onclick="openTab('monitors')">Dungeon Monitors</button>
+      <button class="tab-button" onclick="openTab('cohosting')">Co-Hosting</button>
+      <button class="tab-button" onclick="openTab('accountability')">Accountability Circles</button>
+      <button class="tab-button" onclick="openTab('education')">Kink Education & Safety</button>
+      <button class="tab-button" onclick="openTab('riggers')">Rope Suspension: Riggers</button>
+      <button class="tab-button" onclick="openTab('bottoms')">Rope Suspension: Bottoms</button>
+      <button class="tab-button" onclick="openTab('checklist')">Suspension Checklist</button>
+      <button class="tab-button" onclick="openTab('risk')">Risk Profiles</button>
+      <button class="tab-button" onclick="openTab('feedback')">Feedback & Incidents</button>
+    </div>
+
+    <div id="general" class="tab-content active">
+      <h2>General Information</h2>
+      <p><strong>Description</strong>: Full dungeon play area for ages 21+.</p>
+      <p><strong>Dress Code</strong>: Varies by theme (e.g., Fetish, Leather, Costumes). Clothing optional on premises.</p>
+      <p><strong>Co-Hosts</strong>: Rotate per event, including riggers, Dommes, pornstars, or local kink community leaders.</p>
+      <p><strong>Photography</strong>: Photo-friendly with consent from all in frame. Professional equipment available for arranged scenes.</p>
+      <p><strong>BYOB & Mixers</strong>: Attendees bring their own alcohol; mixers provided, but no alcohol distribution.</p>
+      <p><strong>Venue Details</strong>: Address sent at noon on event day.</p>
+      <p><strong>Contact</strong>: Follow and DM via <a href="https://www.instagram.com/Razorfist_Official">Instagram (@Razorfist_Official)</a> or <a href="https://fetlife.com">Fetlife</a>.</p>
+    </div>
+
+    <div id="vetting" class="tab-content">
+      <h2>Vetting Process</h2>
+      <p><strong>Purpose</strong>: Ensures a safe, like-minded community vibe through selective approval.</p>
+      <p><strong>Reasons for Non-Approval</strong>:</p>
+      <ul>
+        <li>Incomplete Fetlife profile.</li>
+        <li>No referrals or mutual connections.</li>
+        <li>Excessive inappropriate content (e.g., "thirsty" vibe, too many explicit images).</li>
+      </ul>
+      <p><strong>Newcomers</strong>: Attend <a href="https://fetlife.com/groups/12345">Vegas Toolbox</a> for education and networking.</p>
+    </div>
+
+    <div id="monitors" class="tab-content">
+      <h2>Dungeon Monitors</h2>
+      <p><strong>Role</strong>: Supervise playspaces to ensure safety, with authority to stop scenes if needed.</p>
+      <p><strong>Responsibilities</strong>:</p>
+      <ul>
+        <li>Enforce house rules (prohibited activities, safeword, safe gesture).</li>
+        <li>Maintain equipment (clean surfaces, replace pads) between scenes.</li>
+      </ul>
+      <p><strong>Team Structure</strong>: Led by a Chief Dungeon Monitor (often the host or designee) with additional monitors.</p>
+      <p><strong>Volunteer</strong>: Contact the host to assist as a Dungeon Monitor.</p>
+    </div>
+
+    <div id="cohosting" class="tab-content">
+      <h2>Co-Hosting</h2>
+      <p><strong>Co-Host Types</strong>:</p>
+      <ul>
+        <li><strong>Facilitator</strong>: Encourages attendee interaction and equipment use.</li>
+        <li><strong>Entertainer</strong>: Performs scenes (e.g., fire flow arts, lyra, Domme-led scenes).</li>
+      </ul>
+      <p><strong>Co-Host Expectations</strong>:</p>
+      <ul>
+        <li>Create and promote banners on Instagram and Fetlife.</li>
+        <li>Assist with vetting and outreach.</li>
+        <li>Maintain an Accountability Circle on Fetlife.</li>
+        <li>Help with setup (6 PM) and cleanup.</li>
+      </ul>
+      <p><strong>Host Responsibilities</strong>: Manage logistics, approvals, and act as primary host.</p>
+      <p><strong>Interest</strong>: Contact the host to co-host.</p>
+    </div>
+
+    <div id="accountability" class="tab-content">
+      <h2>Accountability Circles</h2>
+      <p><strong>Purpose</strong>: Trusted, impartial community members provide advice or mediate issues.</p>
+      <p><strong>Guidelines</strong>:</p>
+      <ul>
+        <li>Include diverse, respected individuals (varied in race, gender, role).</li>
+        <li>Avoid romantic partners or close associates for impartiality.</li>
+        <li>Designate one central contact for tracking concerns.</li>
+      </ul>
+      <p><strong>Goal</strong>: Ensure fair resolution of boundary issues.</p>
+    </div>
+
+    <div id="education" class="tab-content">
+      <h2>Kink Education & Safety</h2>
+      <p><strong>Kink Education Code of Conduct (KECC)</strong>: Ethical guidance for educators/producers, emphasizing good judgment.</p>
+      <p><strong>Consent</strong>: Voluntary, informed agreement involving collaboration and awareness of feelings/power dynamics.</p>
+      <p><strong>SSC (Safe, Sane, Consensual)</strong>: Focuses on safety (risk mitigation), sanity (sound mind), and ongoing consent.</p>
+      <p><strong>RACK (Risk-Aware Consensual Kink)</strong>: Emphasizes informed consent to risks, inclusive of edgeplay.</p>
+      <p><strong>PRICK (Personal Responsibility, Informed, Consensual Kink)</strong>: Stresses individual accountability and education.</p>
+    </div>
+
+    <div id="riggers" class="tab-content">
+      <h2>Rope Suspension: Riggers</h2>
+      <p><strong>Requirements</strong>: Experience, humility, safety mindset, risk management plans.</p>
+      <p><strong>Preflight Checklist</strong>:</p>
+      <ul>
+        <li><strong>Partner Interview</strong>: Discuss health, hydration, injuries, allergies.</li>
+        <li><strong>Risk Communication</strong>: Explain marks, bruising, nerve risks, equipment safety.</li>
+        <li><strong>Environment Check</strong>: Inspect hardpoints, ensure safety cutters, use mats.</li>
+      </ul>
+      <p><strong>Matting</strong>: Use puzzle flooring or gym mats; mitigate sliding/tripping risks.</p>
+    </div>
+
+    <div id="bottoms" class="tab-content">
+      <h2>Rope Suspension: Bottoms</h2>
+      <p><strong>Preparation</strong>: Build flexibility/strength, communicate medical conditions.</p>
+      <p><strong>Communication</strong>: Report numbness, tingling, or immobility immediately; avoid gags initially.</p>
+      <p><strong>Safety</strong>: Start with experienced riggers, request trusted third parties if needed.</p>
+    </div>
+
+    <div id="checklist" class="tab-content">
+      <h2>Suspension Preparation Checklist</h2>
+      <ul>
+        <li>Confirm rigger skill and mental/physical readiness.</li>
+        <li>Inspect hardpoints, ropes, and environment.</li>
+        <li>Ensure partner readiness.</li>
+        <li>Plan for issues (numbness, fainting, emergency rope cutting).</li>
+        <li>Plan for aftercare and cleanup.</li>
+      </ul>
+    </div>
+
+    <div id="risk" class="tab-content">
+      <h2>Negotiation: Risk Profiles</h2>
+      <p><strong>Definition</strong>: Documented list of desired activities, soft/hard limits, and risks.</p>
+      <p><strong>Purpose</strong>: Facilitates informed negotiation for tops and bottoms.</p>
+      <p><strong>Examples</strong>: Breath play, electrical play, suspension, impact play, consensual nonconsent, etc.</p>
+      <p><strong>Resource</strong>: <a href="https://badgirlsbible.com/bdsm-checklist">Bad Girl Bible’s BDSM Checklist</a>.</p>
+    </div>
+
+    <div id="feedback" class="tab-content">
+      <h2>Feedback & Incident Reporting</h2>
+      <p><strong>Form</strong>: Available for feedback or incident reporting.</p>
+      <p><strong>Preferred Resolution</strong>: Resolve issues via individuals or Accountability Circles.</p>
+      <p><strong>Host Role</strong>: Resource if other avenues fail.</p>
+    </div>
+  </div>
+
+  <script>
+    function openTab(tabId) {
+      // Hide all tab content
+      document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.remove('active');
+      });
+      // Remove active class from all buttons
+      document.querySelectorAll('.tab-button').forEach(button => {
+        button.classList.remove('active');
+      });
+      // Show selected tab content
+      document.getElementById(tabId).classList.add('active');
+      // Add active class to clicked button
+      event.currentTarget.classList.add('active');
+    }
+  </script>
+</body>
+</html>
