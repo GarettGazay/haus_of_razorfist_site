@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Haus of Razorfist - Info</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Oswald', sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #000000;
+      color: #e0e0e0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      /* gap: 20px; */
+    }
+    .logo-container {
+      text-align: center;
+      max-width: 800px;
+      width: 100%;
+    }
+    .logo-placeholder {
+      width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+    .tab-container {
+      max-width: 800px;
+      width: 100%;
+      background-color: #333333;
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: row;
+      height: 550px;
+      overflow-y: auto;
+    }
+    .tab-buttons {
+      display: flex;
+      flex-direction: column;
+      width: 180px;
+      background-color: #1a1a1a;
+      border-right: 2px solid #660000;
+      flex-shrink: 0;
+    }
+    .tab-button {
+      display: none;
+    }
+    .tab-button + label {
+      padding: 12px;
+      text-align: center;
+      cursor: pointer;
+      background-color: #1a1a1a;
+      color: #cc3333;
+      border-bottom: 1px solid #660000;
+      transition: background-color 0.3s, color 0.3s;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      flex-grow: 1;
+    }
+    .tab-button + label:hover {
+      background-color: #4d0000;
+      color: #ffffff;
+    }
+    .tab-button:checked + label,
+    .tab-button.active + label {
+      background-color: #660000;
+      color: #ffffff;
+      font-weight: 500;
+      border-left: 3px solid #cc3333;
+    }
+    .tab-content-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .tab-content {
+      display: none;
+      padding: 20px;
+      box-sizing: border-box;
+      text-align: center;
+      background-color: #333333;
+      border: 2px solid transparent;
+      border-image: linear-gradient(to right, #660000, #cc3333) 1;
+      border-radius: 0 8px 8px 0;
+      flex: 1;
+      overflow-y: auto;
+      color: #e0e0e0;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    h2 {
+      color: #cc3333;
+      margin-top: 0;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+      font-weight: 500;
+    }
+    ul, ol {
+      margin: 10px auto;
+      padding-left: 20px;
+      text-align: left;
+      max-width: 500px;
+    }
+    p {
+      margin: 10px auto;
+      max-width: 500px;
+      color: #e0e0e0;
+      display: block;
+    }
+    a {
+      color: #ff6666;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+      color: #ffffff;
+    }
+    @media (max-width: 900px) {
+      body {
+        flex-direction: column;
+        align-items: center;
+      }
+      .logo-container {
+        max-width: 100%;
+        width: 100%;
+      }
+      .tab-container {
+        width: 100%;
+        flex-direction: column;
+        height: 550px;
+        overflow-y: auto;
+      }
+      .tab-buttons {
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        border-right: none;
+        border-bottom: 2px solid #660000;
+      }
+      .tab-button + label {
+        flex: 1 1 100px;
+        border-bottom: none;
+        border-right: 1px solid #660000;
+        padding: 10px;
+        font-size: 12px;
+      }
+      .tab-button:checked + label,
+      .tab-button.active + label {
+        border-left: none;
+        border-bottom: 3px solid #cc3333;
+      }
+      .tab-content {
+        border-radius: 0 0 8px 8px;
+      }
+    }
+    @media (max-width: 600px) {
+      .tab-button + label {
+        font-size: 10px;
+        padding: 8px;
+      }
+      .tab-content {
+        padding: 15px;
+      }
+      .logo-placeholder {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="logo-container">
+    <img src="https://hausofrazorfist.com/banner.jpg" alt="Haus of Razorfist Logo" class="logo-placeholder">
+  </div>
+  <div class="tab-container">
+    <div class="tab-buttons">
+      <input type="radio" name="tab" id="general" class="tab-button" checked>
+      <label for="general">General</label>
+      <input type="radio" name="tab" id="vetting" class="tab-button">
+      <label for="vetting">Vetting</label>
+      <input type="radio" name="tab" id="monitors" class="tab-button">
+      <label for="monitors">Dungeon Monitors</label>
+      <input type="radio" name="tab" id="cohosting" class="tab-button">
+      <label for="cohosting">Co-Hosting</label>
+      <input type="radio" name="tab" id="accountability" class="tab-button">
+      <label for="accountability">Accountability</label>
+      <input type="radio" name="tab" id="education" class="tab-button">
+      <label for="education">Education & Safety</label>
+      <input type="radio" name="tab" id="riggers" class="tab-button">
+      <label for="riggers">Riggers</label>
+      <input type="radio" name="tab" id="bottoms" class="tab-button">
+      <label for="bottoms">Bottoms</label>
+      <input type="radio" name="tab" id="checklist" class="tab-button">
+      <label for="checklist">Checklist</label>
+      <input type="radio" name="tab" id="risk" class="tab-button">
+      <label for="risk">Risk Profiles</label>
+      <input type="radio" name="tab" id="feedback" class="tab-button">
+      <label for="feedback">Feedback / Incident</label>
+    </div>
+    <div class="tab-content-container">
+      <div id="general-content" class="tab-content active">
+        <h2>General</h2>
+        <p><strong>Description</strong>: Full dungeon play area, ages 21+.</p>
+        <p><strong>Dress Code</strong>: Theme-based (Fetish, Leather, Costumes). Clothing optional on-site.</p>
+        <p><strong>Co-Hosts</strong>: Vary per event (riggers, Dommes, pornstars, kink leaders).</p>
+        <p><strong>Photography</strong>: Allowed with consent; professional equipment available.</p>
+        <p><strong>BYOB & Mixers</strong>: Bring your own alcohol; mixers provided, no distribution.</p>
+        <p><strong>Venue</strong>: Address sent at noon on event day.</p>
+        <p><strong>Contact</strong>: DM via <a href="https://www.instagram.com/Razorfist_Official" target="_blank">Instagram (@Razorfist_Official)</a> or <a href="https://fetlife.com" target="_blank">Fetlife</a>.</p>
+      </div>
+      <div id="vetting-content" class="tab-content">
+        <h2>Vetting Process</h2>
+        <p>The events are vetted, and as such only approved attendees will be allowed to enter. This is both to manage the overall vibe of the events, and bring like-minded people together.</p>
+        <p>Not everyone will be approved. That doesn't mean we love you any less, but it's our job to curate something amazing, safe, and with people of a similar vibe, and as such some will be declined.</p>
+        <p><strong>Reasons for not being approved</strong>:</p>
+        <ul>
+          <li>Lack of detailed Fetlife profile</li>
+          <li>No referrals</li>
+          <li>No common friends</li>
+          <li>WAY TOO MANY dickpics</li>
+          <li>"Thirsty" vibe</li>
+        </ul>
+        <p><strong>Newcomers</strong>: If you're new to town, we recommend going to <a href="https://fetlife.com/groups/12345" target="_blank">Vegas Toolbox</a> to meet others, and get some good education :)</p>
+      </div>
+      <div id="monitors-content" class="tab-content">
+        <h2>Dungeon Monitors</h2>
+        <p>A dungeon monitor, sometimes referred to as a dungeon master or simply DM, is a person charged with supervising a playspace (or "dungeon") at BDSM events such as play parties and fetish clubs. A dungeon monitor may be of any sex or gender, and may normally identify as any role (dominant, submissive, or switch). On duty, their authority is absolute. If a Dungeon Monitor orders a play scene to stop, it must be stopped immediately.</p>
+        <p><strong>Primary Responsibility</strong>: Ensure the physical safety of all participants engaging in BDSM play.</p>
+        <p><strong>Structure</strong>: In most cases, there is a team of Dungeon Monitors, led by one or more Chief Dungeon Monitors. At private parties, it is typically the host's role to act as a Chief Dungeon Monitor or to nominate an attendee to serve in that capacity, possibly along with one or more additional Dungeon Monitors.</p>
+        <p><strong>Responsibilities</strong>:</p>
+        <ul>
+          <li>Monitor play scenes and enforce house rules, which list prohibited activities, the default safeword, and sometimes a safe gesture.</li>
+          <li>Maintain dungeon equipment between scenes, ensuring players clean surfaces and equipment after use (usually with disinfectants), replace pads, and ready the play area safely for its next scene.</li>
+        </ul>
+        <p><strong>Volunteer</strong>: If you're interested in assisting the events as a Dungeon Monitor, please reach out to the host directly.</p>
+        <p><strong>Kink Education Code of Conduct (KECC)</strong>: The KECC establishes a code of conduct for kink educators and producers. It provides practical guidance for navigating ethical dilemmas and creates a framework for clear communication between educators and producers. The KECC is a roadmap for reasonable human beings, not a precise legal code. It should be interpreted using good judgment and good faith, seeking always to adhere to the spirit of the code.</p>
+        <p><strong>Resource</strong>: <a href="https://www.thekecc.org/fullVersion.html" target="_blank">Kink Education Code of Conduct</a></p>
+      </div>
+      <div id="cohosting-content" class="tab-content">
+        <h2>Co-Hosting</h2>
+        <p>Co-hosts play a vital role in ensuring Haus of Razorfist events run smoothly and maintain a vibrant, safe, and engaging atmosphere. Co-hosts collaborate with the primary host to enhance the event experience through facilitation or performance.</p>
+        <p><strong>Types of Co-Hosts</strong>:</p>
+        <ul>
+          <li><strong>Facilitator</strong>: Encourages attendee interaction, assists with equipment setup and usage, and fosters a welcoming environment for all participants.</li>
+          <li><strong>Entertainer</strong>: Performs captivating scenes, such as fire arts, lyra (aerial hoop), or Domme-led demonstrations, to inspire and engage attendees.</li>
+        </ul>
+        <p><strong>Expectations for Co-Hosts</strong>:</p>
+        <ul>
+          <li>Create and promote event banners on platforms like Instagram and Fetlife to attract the right audience.</li>
+          <li>Assist with vetting attendees and conducting outreach to ensure a safe, like-minded community.</li>
+          <li>Participate in or maintain the Accountability Circle to address any concerns or conflicts fairly.</li>
+          <li>Help with event setup (starting at 6 PM) and cleanup to ensure the venue is prepared and restored post-event.</li>
+        </ul>
+        <p><strong>Host Duties</strong>: The primary host oversees logistics, final attendee approvals, and overall event management, working closely with co-hosts to ensure a seamless experience.</p>
+        <p><strong>Interested in Co-Hosting?</strong>: Reach out to the host directly via <a href="https://www.instagram.com/Razorfist_Official" target="_blank">Instagram (@Razorfist_Official)</a> or <a href="https://fetlife.com" target="_blank">Fetlife</a> to discuss opportunities.</p>
+      </div>
+      <div id="accountability-content" class="tab-content">
+        <h2>Accountability Circles</h2>
+        <p>An Accountability Circle is a group of respected individuals from the local kink community who provide advice and, if necessary, coordinate an accountability process to address concerns or boundary violations. Members may or may not also serve as accountability contacts.</p>
+        <p><strong>Purpose</strong>: To offer a safe, impartial mechanism for resolving issues, allowing attendees to discuss concerns anonymously or non-anonymously with a trusted circle member to reach fair resolutions.</p>
+        <p><strong>Guidelines for Building an Accountability Circle</strong>:</p>
+        <ul>
+          <li><strong>Impartiality</strong>: Accountability contacts should not be romantic or play partners, business associates, or close friends. While some circle members may have closer ties, at least some should be independent to ensure impartiality.</li>
+          <li><strong>Multiple Contacts</strong>: Include several accountability contacts to ensure accessibility, so individuals with concerns can choose someone they feel comfortable approaching.</li>
+          <li><strong>Diversity</strong>: The circle should reflect racial, gender, and role diversity, providing varied perspectives and feeling approachable to all community members.</li>
+          <li><strong>Trust and Centralization</strong>: Choose individuals trusted by both you and the broader community. Designate one person as the central repository for all information to identify patterns of problematic behavior.</li>
+        </ul>
+      </div>
+      <div id="education-content" class="tab-content">
+        <h2>Education & Safety</h2>
+        <p><strong>Consent</strong>: Consent is more than "no means no" or "yes means yes." It’s a shared feeling created through constant, collaborative discovery, requiring voluntary agreement without coercion among those with decision-making capacity, knowledge, understanding, and autonomy. It involves slowing down to consider feelings, sensations, and power dynamics.</p>
+        <p><strong>Key Questions for Consent</strong>:</p>
+        <ul>
+          <li>How easy is it to talk about your feelings?</li>
+          <li>Do you always understand why your body experiences different sensations?</li>
+          <li>Do you always know how powerful you are?</li>
+        </ul>
+        <p><strong>Resource</strong>: <a href="https://consent.academy" target="_blank">Consent Academy</a></p>
+        <p><strong>SSC (Safe, Sane, and Consensual)</strong>: A foundational BDSM principle emphasizing safety, sanity, and mutual consent. Safety involves mitigating risks with safe words, boundaries, and first aid knowledge. Sanity ensures rational decision-making. Consent must be informed, clear, and ongoing. SSC is ideal for beginners but may be limited for complex or extreme play.</p>
+        <p><strong>SSC Implementation</strong>:</p>
+        <ul>
+          <li>Attend training or research to ensure safe practices.</li>
+          <li>Conduct regular mental health checks for sound decision-making.</li>
+          <li>Negotiate consent actively before, during, and after play.</li>
+        </ul>
+        <p><strong>RACK (Risk-Aware Consensual Kink)</strong>: RACK focuses on informed consent to risks in BDSM activities, acknowledging nothing is 100% safe. It emphasizes being well-informed about risks, offering consensual agreement, and engaging in alternative sexual activities. RACK is more inclusive of edgeplay, prioritizing individual commitment to potential risks over minimizing harm post-play.</p>
+        <p><strong>RACK Philosophy</strong>:</p>
+        <ul>
+          <li><strong>Risk-Aware</strong>: Partners are informed of activity risks.</li>
+          <li><strong>Consensual</strong>: Partners consent with sound mind.</li>
+          <li><strong>Kink</strong>: Activities are alternative sexual practices.</li>
+        </ul>
+        <p><strong>Resource</strong>: <a href="https://en.wikipedia.org/wiki/Risk-aware_consensual_kink" target="_blank">Wiki on RACK</a></p>
+        <p><strong>PRICK (Personal Responsibility, Informed, Consensual Kink)</strong>: PRICK emphasizes individual accountability in BDSM. It highlights personal responsibility for actions, being fully informed about risks, and ensuring consensual participation in diverse kink activities.</p>
+        <p><strong>PRICK Principles</strong>:</p>
+        <ul>
+          <li><strong>Personal Responsibility</strong>: Individuals are accountable for their actions and safety.</li>
+          <li><strong>Informed</strong>: Understand risks and how to manage them.</li>
+          <li><strong>Consensual</strong>: All parties agree willingly with full understanding.</li>
+          <li><strong>Kink</strong>: Encompasses diverse BDSM activities.</li>
+        </ul>
+        <p><strong>PRICK Application</strong>: Partners should self-educate, seek resources, and continuously learn safe practices to ensure accountability and informed consent.</p>
+      </div>
+      <div id="riggers-content" class="tab-content">
+        <h2>Rope Suspension: Riggers</h2>
+        <p><strong>Becoming a Suspension Rigger</strong>: Suspension rigging requires advanced responsibility, experience in floor-level bondage, a safety mindset, and a plan for skill development. Riggers must conquer ego, ask for help, understand heightened risks when lifting partners off the floor, and have a strategy to handle unexpected issues.</p>
+        <p><strong>Preflight: Interviewing Your Partner</strong>: Establishing communication is critical before a rope suspension scene. Discuss the following to ensure safety and consent:</p>
+        <p><strong>Present Condition</strong>:</p>
+        <ul>
+          <li>When did you last eat?</li>
+          <li>Are you thirsty?</li>
+          <li>How are you feeling today?</li>
+          <li>Have you been sick recently?</li>
+          <li>Did you sleep well last night?</li>
+          <li>Is anything sore today?</li>
+          <li>Do you want to use the bathroom before we start?</li>
+          <li>Is the temperature comfortable? (Cold decreases resiliency; heat increases fainting risk.)</li>
+        </ul>
+        <p><strong>Personal History</strong>:</p>
+        <ul>
+          <li>Do you have any medical conditions?</li>
+          <li>Do you have any physical limitations?</li>
+          <li>Do you have recent or old injuries that still bother you?</li>
+          <li>Do you have any allergies?</li>
+          <li>If you have an inhaler or EpiPen, where is it? Can you show me how to use it?</li>
+        </ul>
+        <p><strong>Risk Awareness and Management</strong>: Ensure informed consent by discussing risks, including:</p>
+        <ul>
+          <li><strong>Skin Marks</strong>: Rope impressions (fade in hours), bruising, or petechiae (may last weeks).</li>
+          <li><strong>Rope Burn</strong>: Can last up to 6 months, typically from extreme or dynamic suspensions or errors.</li>
+          <li><strong>Dropping Risk</strong>: Possible from technical errors.</li>
+          <li><strong>Nerve Compression</strong>: Emphasize vigilance for tingling, numbness, or unusual sensations.</li>
+          <li><strong>Specific Risks</strong>: Highlight known risks (e.g., TK nerve issues) and fainting warning signs.</li>
+          <li><strong>Equipment and Hardpoint Safety</strong>: Discuss potential failures (e.g., natural fiber rope) and mitigation strategies.</li>
+        </ul>
+        <p><strong>Rigger’s Checklist</strong>: Before starting, confirm:</p>
+        <ul>
+          <li>Hardpoint inspected.</li>
+          <li>No human, tripping, or environmental hazards.</li>
+          <li>Safety cutters visible and within reach.</li>
+        </ul>
+        <p><strong>Using Mats</strong>: Mats enhance safety and comfort, especially for knees, elbows, and head. Use puzzle flooring or high-density wrestling/gym mats (2-5cm thick) for durability and easy cleaning. Be aware of risks:</p>
+        <ul>
+          <li>Mat sliding during lift line adjustments.</li>
+          <li>Tripping over mat edges.</li>
+          <li>Excessively squishy mats affecting balance.</li>
+        </ul>
+        <p><strong>Resources</strong>:</p>
+        <ul>
+          <li><a href="https://www.theduchy.com/suspension" target="_blank">The Duchy Article on Suspension</a></li>
+          <li><a href="https://crash-restraint.com/ties" target="_blank">Crash-Restraint's Article on Tying Rope</a></li>
+        </ul>
+      </div>
+      <div id="bottoms-content" class="tab-content">
+        <h2>Rope Suspension: Bottoms</h2>
+        <p><strong>Preparation</strong>: Suspension requires effort from bottoms too. Work on flexibility and strength to manage discomfort and shift pressure during scenes. Know your body’s needs and capabilities, and communicate any medical issues, especially related to joints, muscles, heart, circulatory system, or diabetes.</p>
+        <p><strong>Communication</strong>: Your rigger aims to position ropes safely to avoid pinching nerves or blood vessels, but individual anatomy varies. Immediately report any numbness, tingling, or unexpected sensations. If a limb feels “dead” (e.g., unable to move fingers or toes), inform your rigger right away to adjust or undo the rope.</p>
+        <p><strong>Safety Tips</strong>:</p>
+        <ul>
+          <li><strong>Start with Experience</strong>: For your first suspensions, work with an experienced rigger to learn safely and gain confidence.</li>
+          <li><strong>Trusted Partners</strong>: If concerned about a rigger’s experience, suggest including a trusted, experienced partner for initial sessions to enhance safety and fun.</li>
+          <li><strong>Avoid Gags Initially</strong>: With a new rigger, avoid gags for the first few sessions to ensure clear verbal communication until non-verbal cues are established.</li>
+        </ul>
+        <p><strong>Resource</strong>: <a href="https://www.theduchy.com/suspension" target="_blank">The Duchy Article on Suspension</a></p>
+      </div>
+      <div id="checklist-content" class="tab-content">
+        <h2>Suspension Prep Checklist</h2>
+        <p><strong>Rigger Readiness</strong>: Ensure you’re fully prepared to take on the responsibility of a suspension scene by confirming the following:</p>
+        <ul>
+          <li>Do you have the skill and experience for the planned scene?</li>
+          <li>Are you mentally, physically, and emotionally fit to handle this responsibility?</li>
+          <li>Do you have the energy and focus required?</li>
+          <li>Are your faculties unimpaired (e.g., not under the influence)?</li>
+        </ul>
+        <p><strong>Equipment and Environment</strong>: Verify the safety and readiness of your setup:</p>
+        <ul>
+          <li>Have you checked the hardpoint and physical scene for hazards?</li>
+          <li>Have you inspected your gear, equipment, and ropes?</li>
+        </ul>
+        <p><strong>Scene Planning</strong>: Confirm all plans are in place:</p>
+        <ul>
+          <li>Do you have clear plans for the scene?</li>
+          <li>Is your partner ready overall and for the specific scene?</li>
+          <li>Have you planned for potential issues, such as numbness, tingling, hypoglycemia, panic attacks, fainting, falls, or emergency let-down/cut-the-rope scenarios?</li>
+        </ul>
+        <p><strong>Post-Scene</strong>: Prepare for after the scene:</p>
+        <ul>
+          <li>Plan for cleanup of the play area and equipment.</li>
+          <li>Arrange for aftercare to support your partner’s physical and emotional needs.</li>
+        </ul>
+        <p><strong>Resource</strong>: <a href="https://www.theduchy.com/suspension-safety" target="_blank">The Duchy Article on Suspension Safety</a></p>
+      </div>
+      <div id="risk-content" class="tab-content">
+        <h2>Negotiation: Risk Profiles</h2>
+        <p><strong>Definition</strong>: A risk profile is a documented list of activities, desires, and limits that acknowledges potential risks in kink play, enabling quick decision-making during scenes. It helps tops and bottoms align on physical and emotional risks during the negotiation phase.</p>
+        <p><strong>Components of a Risk Profile</strong>:</p>
+        <ul>
+          <li><strong>Yes, Please</strong>: Activities you actively seek.</li>
+          <li><strong>Soft Limits</strong>: Activities you’re open to exploring under specific conditions.</li>
+          <li><strong>Hard Limits</strong>: Activities you are not open to engaging in.</li>
+        </ul>
+        <p><strong>Purpose</strong>: Risk profiles facilitate informed negotiations by outlining desires, boundaries, and risks for both tops and bottoms, ensuring safer and more consensual play.</p>
+        <p><strong>Activities to Consider</strong>: When building your risk profile, reflect on the following:</p>
+        <ul>
+          <li>Breath play</li>
+          <li>Electrical play</li>
+          <li>Unprotected PIA/PIV</li>
+          <li>Fire play</li>
+          <li>Wax play</li>
+          <li>Cutting/Knife play</li>
+          <li>Rough body play (kicking, wrestling, punching)</li>
+          <li>Impact play (whip, paddles, flogging, spanking)</li>
+          <li>Suspension bondage (e.g., arm-loading ties like TK)</li>
+          <li>Suspension inversion</li>
+          <li>Restraint (handcuffs, rope, blindfolds)</li>
+          <li>Sex (group, penetration, oral, anal, double penetration)</li>
+          <li>Humiliation/degradation</li>
+          <li>Consensual nonconsent</li>
+        </ul>
+        <p><strong>Negotiation Tips</strong>: Discuss hard and soft limits, desired outcomes, and potential risks during scene planning. Documenting your risk profile helps clarify interests and boundaries for both partners.</p>
+        <p><strong>Resource</strong>: <a href="https://badgirlsbible.com/bdsm-checklist" target="_blank">BadGirlBible's BDSM Checklist Spreadsheet</a></p>
+      </div>
+      <div id="feedback-content" class="tab-content">
+        <h2>Feedback and Incident Reporting</h2>
+        <p><strong>Purpose</strong>: The Haus of Razorfist Feedback and Incident Reporting Form allows attendees to provide constructive feedback on the event space and events, as well as report any incidents that may occur.</p>
+        <p><strong>Resolution Process</strong>: Ideally, incidents should be resolved directly between individuals or through Accountability Circles. However, the host is available as a resource if other resolution avenues are unavailable.</p>
+        <p><strong>Submit Feedback or Report an Incident</strong>: Use the form below to share your feedback or report any issues.</p>
+        <p><strong>Resource</strong>: <a href="https://docs.google.com/forms/d/e/1FAIpQLSfqpeqVGoqqbOVMr0THG5yTqtybrWdmqpxd4fvvt8DSso8kLw/viewform" target="_blank">Haus of Razorfist Incident Handling Form</a></p>
+      </div>
+    </div>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const tabs = document.querySelectorAll('.tab-button');
+      const contents = document.querySelectorAll('.tab-content');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('change', () => {
+          tabs.forEach(t => {
+            t.classList.remove('active');
+            document.querySelector(`label[for="${t.id}"]`).classList.remove('active');
+          });
+          contents.forEach(content => content.classList.remove('active'));
+
+          tab.classList.add('active');
+          document.querySelector(`label[for="${tab.id}"]`).classList.add('active');
+          document.querySelector(`#${tab.id}-content`).classList.add('active');
+        });
+      });
+
+      const checkedTab = document.querySelector('.tab-button:checked');
+      if (checkedTab) {
+        checkedTab.classList.add('active');
+        document.querySelector(`label[for="${checkedTab.id}"]`).classList.add('active');
+        document.querySelector(`#${tab.id}-content`).classList.add('active');
+      }
+    });
+  </script>
+</body>
+</html>
