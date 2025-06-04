@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,244 +7,159 @@
   <title>Haus of Razorfist - Info</title>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Oswald', sans-serif;
-      margin: 0;
-      padding: 20px;
-      background-color: #000000;
-      color: #e0e0e0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-    }
-    .logo-container {
-      text-align: center;
-      max-width: 800px;
-      width: 100%;
-    }
-    .logo-placeholder {
-      width: 100%;
-      height: auto;
-      display: block;
-      margin: 0 auto;
-    }
-    .tab-container {
-      max-width: 800px;
-      width: 100%;
-      background-color: #333333;
-      border-radius: 8px;
-      box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: row;
-      height: 550px;
-      overflow-y: auto;
-    }
-    .tab-buttons {
-      display: flex;
-      flex-direction: column;
-      width: 180px;
-      background-color: #1a1a1a;
-      border-right: 2px solid #660000;
-      flex-shrink: 0;
-    }
-    .main-tab {
-      display: none;
-    }
-    .main-tab + label {
-      padding: 10px;
-      text-align: center;
-      cursor: pointer;
-      background-color: #1a1a1a;
-      color: #cc3333;
-      border-bottom: 1px solid #660000;
-      transition: background-color 0.3s, color 0.3s;
-      font-size: 14px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-    .main-tab + label:hover {
-      background-color: #4d0000;
-      color: #ffffff;
-    }
-    .main-tab:checked + label {
-      background-color: #660000;
-      color: #ffffff;
-      font-weight: 500;
-      border-left: 3px solid #cc3333;
-    }
-    .subtab-container {
-      display: none;
-      flex-direction: column;
-      background-color: #222222;
-      padding-left: 10px;
-    }
-    .main-tab:checked ~ .subtab-container {
-      display: flex;
-    }
-    .sub-tab {
-      display: none;
-    }
-    .sub-tab + label {
-      padding: 10px;
-      text-align: center;
-      cursor: pointer;
-      background-color: #222222;
-      color: #cc6666;
-      border-bottom: 1px solid #660000;
-      font-size: 12px;
-      letter-spacing: 0.5px;
-    }
-    .sub-tab + label:hover {
-      background-color: #4d0000;
-      color: #ffffff;
-    }
-    .subsubtab-container {
-      display: none;
-      flex-direction: column;
-      background-color: #2a2a2a;
-      padding-left: 20px;
-    }
-    .sub-tab:checked ~ .subsubtab-container {
-      display: flex;
-    }
-    .subsub-tab {
-      display: none;
-    }
-    .subsub-tab + label {
-      padding: 8px;
-      text-align: center;
-      cursor: pointer;
-      background-color: #2a2a2a;
-      color: #cc9999;
-      border-bottom: 1px solid #660000;
-      font-size: 10px;
-      letter-spacing: 0.5px;
-    }
-    .subsub-tab + label:hover {
-      background-color: #4d0000;
-      color: #ffffff;
-    }
-    .tab-content-container {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-    .tab-content {
-      display: none;
-      padding: 20px;
-      box-sizing: border-box;
-      text-align: center;
-      background-color: #333333;
-      border: 2px solid transparent;
-      border-image: linear-gradient(to right, #660000, #cc3333) 1;
-      border-radius: 0 8px 8px 0;
-      flex: 1;
-      overflow-y: auto;
-      color: #e0e0e0;
-    }
-    .tab-content.active {
-      display: block;
-    }
-    h2 {
-      color: #cc3333;
-      margin-top: 0;
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-      font-weight: 500;
-    }
-    p {
-      margin: 10px auto;
-      max-width: 500px;
-      color: #e0e0e0;
-      display: block;
-    }
-    @media (max-width: 900px) {
-      body {
-        flex-direction: column;
-        align-items: center;
-      }
-      .logo-container {
-        max-width: 100%;
-        width: 100%;
-      }
-      .tab-container {
-        width: 100%;
-        flex-direction: column;
-        height: 550px;
-        overflow-y: auto;
-      }
-      .tab-buttons {
-        width: 100%;
-        flex-direction: row;
-        flex-wrap: wrap;
-        border-right: none;
-        border-bottom: 2px solid #660000;
-      }
-      .main-tab + label {
-        flex: 1 1 100px;
-        border-bottom: none;
-        border-right: 1px solid #660000;
-        padding: 8px;
-        font-size: 12px;
-      }
-      .main-tab:checked + label {
-        border-left: none;
-        border-bottom: 3px solid #cc3333;
-      }
-      .subtab-container {
-        flex-direction: row;
-        flex-wrap: wrap;
-        padding-left: 0;
-      }
-      .sub-tab + label {
-        flex: 1 1 100px;
-        border-bottom: none;
-        border-right: 1px solid #660000;
-        padding: 8px;
-        font-size: 10px;
-      }
-      .subsubtab-container {
-        flex-direction: row;
-        flex-wrap: wrap;
-        padding-left: 0;
-      }
-      .subsub-tab + label {
-        flex: 1 1 100px;
-        border-bottom: none;
-        border-right: 1px solid #660000;
-        padding: 6px;
-        font-size: 9px;
-      }
-      .tab-content {
-        border-radius: 0 0 8px 8px;
-      }
-    }
-    @media (max-width: 600px) {
-      .main-tab + label {
-        font-size: 10px;
-        padding: 6px;
-      }
-      .sub-tab + label {
-        font-size: 9px;
-        padding: 6px;
-      }
-      .subsub-tab + label {
-        font-size: 8px;
-        padding: 5px;
-      }
-      .tab-content {
-        padding: 15px;
-      }
-      .logo-placeholder {
-        width: 100%;
-      }
-    }
-
-
-
-
-    .kink-list {
+body {
+  font-family: 'Oswald', sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #000000;
+  color: #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+.logo-container {
+  text-align: center;
+  max-width: 800px;
+  width: 100%;
+}
+.logo-placeholder {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+.tab-container {
+  max-width: 800px;
+  width: 100%;
+  background-color: #333333;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  height: 600px;
+  overflow-y: none;
+}
+.tab-buttons {
+  display: flex;
+  flex-direction: column;
+  width: 180px;
+  background-color: #1a1a1a;
+  border-right: 2px solid #660000;
+  flex-shrink: 0;
+}
+.main-tab {
+  display: none;
+}
+.main-tab + label {
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  background-color: #1a1a1a;
+  color: #cc3333;
+  border-bottom: 1px solid #660000;
+  transition: background-color 0.3s, color 0.3s;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.main-tab + label:hover {
+  background-color: #4d0000;
+  color: #ffffff;
+}
+.main-tab:checked + label {
+  background-color: #660000;
+  color: #ffffff;
+  font-weight: 500;
+  border-left: 3px solid #cc3333;
+}
+.subtab-container {
+  display: none;
+  flex-direction: column;
+  background-color: #222222;
+  padding-left: 10px;
+}
+.main-tab:checked ~ .subtab-container {
+  display: flex;
+}
+.sub-tab {
+  display: none;
+}
+.sub-tab + label {
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  background-color: #222222;
+  color: #cc6666;
+  border-bottom: 1px solid #660000;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+.sub-tab + label:hover {
+  background-color: #4d0000;
+  color: #ffffff;
+}
+.subsubtab-container {
+  display: none;
+  flex-direction: column;
+  background-color: #2a2a2a;
+  padding-left: 20px;
+}
+.sub-tab:checked ~ .subsubtab-container {
+  display: flex;
+}
+.subsub-tab {
+  display: none;
+}
+.subsub-tab + label {
+  padding: 8px;
+  text-align: center;
+  cursor: pointer;
+  background-color: #2a2a2a;
+  color: #cc9999;
+  border-bottom: 1px solid #660000;
+  font-size: 10px;
+  letter-spacing: 0.5px;
+}
+.subsub-tab + label:hover {
+  background-color: #4d0000;
+  color: #ffffff;
+}
+.tab-content-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.tab-content {
+  display: none;
+  padding: 20px;
+  box-sizing: border-box;
+  text-align: center;
+  background-color: #333333;
+  border: 2px solid transparent;
+  border-image: linear-gradient(to right, #660000, #cc3333) 1;
+  border-radius: 0 8px 8px 0;
+  flex: 1;
+  overflow-y: auto;
+  color: #e0e0e0;
+}
+.tab-content.active {
+  display: block;
+}
+h2 {
+  color: #cc3333;
+  margin-top: 0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  font-weight: 500;
+}
+p {
+  margin: 10px auto;
+  max-width: 500px;
+  color: #e0e0e0;
+  display: block;
+}
+.kink-list {
   max-width: 500px;
   margin: 15px auto;
   text-align: left;
@@ -281,7 +197,29 @@
   margin: 15px 0 10px;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
+/* Media queries for mobile adjustments */
 @media (max-width: 900px) {
+  .tab-buttons {
+    width: 120px; /* Reduced width for tabs on mobile */
+  }
+  .logo-placeholder {
+    width: 100%;
+  }
+  .main-tab + label {
+    font-size: 12px;
+    padding: 8px;
+  }
+  .sub-tab + label {
+    font-size: 10px;
+    padding: 8px;
+  }
+  .subsub-tab + label {
+    font-size: 9px;
+    padding: 6px;
+  }
+  .tab-content {
+    padding: 15px;
+  }
   .kink-list ul {
     padding-left: 15px;
   }
@@ -300,6 +238,24 @@
   }
 }
 @media (max-width: 600px) {
+  .tab-buttons {
+    width: 100px; /* Further reduced width for smaller screens */
+  }
+  .main-tab + label {
+    font-size: 10px;
+    padding: 6px;
+  }
+  .sub-tab + label {
+    font-size: 9px;
+    padding: 6px;
+  }
+  .subsub-tab + label {
+    font-size: 8px;
+    padding: 5px;
+  }
+  .tab-content {
+    padding: 15px;
+  }
   .kink-list ul {
     padding-left: 10px;
   }
@@ -317,7 +273,7 @@
     font-size: 14px;
   }
 }
-  </style>
+</style>
 </head>
 <body>
   <div class="logo-container">
@@ -338,7 +294,7 @@
         <label for="what-is-dom-sub">What is a Dom and a Sub?</label>
       </div>
       <input type="radio" name="main-tab" id="consent-frameworks" class="main-tab">
-      <label for="consent-frameworks">Consent Frameworks</label>
+      <label for="consent-frameworks">Consent</label>
       <div class="subtab-container">
         <input type="radio" name="consent-frameworks-subtab" id="ssc" class="sub-tab">
         <label for="ssc">SSC</label>
@@ -359,10 +315,13 @@
         <input type="radio" name="how-to-play-subtab" id="risk-profiles" class="sub-tab">
         <label for="risk-profiles">Risk Profiles</label>
         <input type="radio" name="how-to-play-subtab" id="plan-a-scene" class="sub-tab">
-        <label for="plan-a-scene">Plan a Scene</label>
+        <!-- <label for="plan-a-scene">Plan a Scene</label> -->
+        
       </div>
-      <input type="radio" name="main-tab" id="conduct-a-scene" class="main-tab">
-      <label for="conduct-a-scene">Conduct a Scene</label>
+      <input type="radio" name="main-tab" id="plan-a-scene" class="main-tab">
+      <label for="plan-a-scene">Plan a Scene</label>
+
+      
       <div class="subtab-container">
         <input type="radio" name="conduct-a-scene-subtab" id="preparation" class="sub-tab">
         <label for="preparation">Preparation</label>
@@ -380,6 +339,16 @@
           <input type="radio" name="preparation-subsubtab" id="if-something-goes-wrong" class="subsub-tab">
           <label for="if-something-goes-wrong">If Something goes Wrong</label>
         </div>
+
+        <input type="radio" name="conduct-a-scene-subtab" id="conduct-a-scene" class="sub-tab">
+        <label for="conduct-a-scene">Conduct A Scene</label>
+        <div class="subsubtab-container">
+          <input type="radio" name="aftercare-subsubtab" id="coming-down-aftercare" class="subsub-tab">
+          <label for="coming-down-aftercare">Coming Down and Immediate Aftercare</label>
+          <input type="radio" name="aftercare-subsubtab" id="post-scene-processing" class="subsub-tab">
+          <label for="post-scene-processing">Post-Scene Processing</label>
+        </div>
+
         <input type="radio" name="conduct-a-scene-subtab" id="aftercare" class="sub-tab">
         <label for="aftercare">Aftercare</label>
         <div class="subsubtab-container">
@@ -388,6 +357,8 @@
           <input type="radio" name="aftercare-subsubtab" id="post-scene-processing" class="subsub-tab">
           <label for="post-scene-processing">Post-Scene Processing</label>
         </div>
+
+
       </div>
       <input type="radio" name="main-tab" id="types-of-play" class="main-tab">
       <label for="types-of-play">Types of Play</label>
@@ -406,7 +377,7 @@
         <label for="impact-play">Impact Play</label>
       </div>
       <input type="radio" name="main-tab" id="what-are-kink-events" class="main-tab">
-      <label for="what-are-kink-events">What are Kink Events?</label>
+      <label for="what-are-kink-events">Kink Events</label>
       <div class="subtab-container">
       </div>
       <input type="radio" name="main-tab" id="haus-of-razorfist" class="main-tab">
@@ -428,10 +399,18 @@
         <label for="expectations-co-hosts">Expectations for Co-Hosts</label>
       </div>
     </div>
+
     <div class="tab-content-container">
+
+      <div id="general-content" class="tab-content">
+        <h2>General</h2>
+        <p>We are Legion. Expect Us.</p>
+      </div>
+
       <div id="what-is-bdsm-content" class="tab-content">
+
         <h2>What is BDSM?</h2>
-        <p>What is BDSM?
+        <p>
           BDSM is term used to describe personal dynamics that involve dominance, submission, and control. The practice typically involves one partner taKink on a more dominant role while the other is more submissive. 
           According to a 2016 study, nearly 47% of women and 60% of men have fantasized about dominating someone in a sexual context. The same study found that BDSM sex was slightly more prevalent in couples on the LGBTQ spectrum, but researchers otherwise determined that BDSM sex was practiced across different ages, genders, and ethnic backgrounds. 
           </p>
@@ -571,7 +550,7 @@ There are several different schools of thought regarding consent. A few of the m
 
 
       <div id="kecc-content" class="tab-content">
-        <h2>KECC</h2>
+        <h2>Kink Education Code of Conduct (KECC)</h2>
         <p>The KECC establishes a code of conduct for kink educators and producers. It provides practical guidance for navigating ethical dilemmas and creates a framework for clear communication between educators and producers. The KECC is a roadmap for reasonable human beings, not a precise legal code. It should be interpreted using good judgment and good faith, seeking always to adhere to the spirit of the code.</p>
         <p style="text-align: center;"><strong>Resource</strong>: <a href="https://www.thekecc.org/fullVersion.html" target="_blank">Consent Academy</a></p></p>
     </div>
@@ -783,12 +762,12 @@ There are several different schools of thought regarding consent. A few of the m
 
       <div id="rope-suspension-content" class="tab-content">
         <h2>Rope Suspension</h2>
-         <p>ADD TEXT HERE - RIP STEVE JOBS</p>
+         <p>Shibari, in Japanese, simply means "to tie". It refers to a Japanese practice that involves using rope to tie individuals in various ways, often with an emphasis on visual aesthetics and visual expression. This practice can be explored as a form of bondage, a sexual activity, and/or a form of artistic expression. <br><br> Shibari places a strong emphasis on the visual appearance of the ties, often resulting in intricate and visually striking designs. In Shibari, there's typically a "rigger" who ties the individual, and the person being tied is often referred to as the "bottom" or "rope bunny".  </p>
       </div>
       
       <div id="riggers-content" class="tab-content">
-        <h2>Riggers</h2>
-        <p>Becoming a Suspension Rigger: Suspension rigging requires advanced responsibility, experience in floor-level bondage, a safety mindset, and a plan for skill development. Riggers must conquer ego, ask for help, understand heightened risks when lifting partners off the floor, and have a strategy to handle unexpected issues.</p>
+        <h2>Shibari Riggers</h2>
+        <p>Suspension rigging requires advanced responsibility, experience in floor-level bondage, a safety mindset, and a plan for skill development. Riggers must conquer ego, ask for help, understand heightened risks when lifting partners off the floor, and have a strategy to handle unexpected issues.</p>
         <p>Preflight: Interviewing Your Partner: Establishing communication is critical before a rope suspension scene. Discuss the following to ensure safety and consent:</p>
         <div class="kink-list">
           <h3>Present Condition:</h3>
@@ -811,8 +790,7 @@ There are several different schools of thought regarding consent. A few of the m
                    <li>Do you have recent or old injuries that still bother you?</li>
                    <li>Do you have any allergies?</li>
                    <li>If you have an inhaler or EpiPen, where is it? Can you show me how to use it?</li>
-                   <li>TEXT_HERE</li>
-                   <li>TEXT_HERE</li>
+           
                 </ul>
             </div>
 
@@ -931,12 +909,12 @@ There are several different schools of thought regarding consent. A few of the m
 
       <div id="haus-of-razorfist-content" class="tab-content">
         <h2>Haus of Razorfist</h2>
+            <p>Location: Las Vegas, Nevada</p>
             <p>Description: Full dungeon play areas, ages 21+</p>
             <p>Dress Code: Theme-based (Fetish, Leather, Costumes). Clothing optional on-site.</p>
-            <p>Co-Hosts: Vary per event (riggers, Dommes, pornstars, kink leaders).</p>
+            <p>Co-Hosts: Vary per event (riggers, Dommes, Local kink leaders).</p>
             <p>Photography: Allowed with consent; professional equipment available.</p>
-            <p>BYOB & Mixers: Bring your own alcohol; mixers provided, no distribution.</p>
-            <p>Venue: Address sent at noon on event day.</p>
+            <p>BYOB & Mixers: Bring your own alcohol; mixers provided, no distribution or sales allowed.</p>
             <p>Contact: DM via Haus Of Razorfist Instagram Profile or Razorfist Fetlife Profile.</p>
             <p><strong>Resource:</strong> <a href="https://www.instagram.com/HausofRazorfist" target="_blank">Haus Of Razorfist on Instagram</a></p>
             <p><strong>Resource:</strong> <a href="https://fetlife.com/Razorfist" target="_blank">Razorfist on Fetlife</a></p>
@@ -944,7 +922,7 @@ There are several different schools of thought regarding consent. A few of the m
 
         <div id="safety-at-haus-content" class="tab-content">
             <h2>Safety at Haus of Razorfist</h2>
-            <p>Safety at kink events, like many aspects of kink, revolves around the principles of Consent, Negotiation, and overall safety of attendees.  </p>
+            <p>Safety at kink events, like many aspects of kink, revolves around the principles of Consent, Negotiation, and overall safety of attendees. Haus of Razorfist attempts to create a safe environment for the community to gather. As such, the safety of attendees is addressed in various ways. </p>
           </div>
           <div id="vetting-process-content" class="tab-content">
             <h2>Vetting Process</h2>
@@ -961,8 +939,8 @@ There are several different schools of thought regarding consent. A few of the m
                 </ul>
             </div>
     
-            <p>Newcomers: If you're new to town, we recommend going to Vegas Toolbox Fetlife Profile to meet others, and get some good education.</p>
-            <p><strong>Resource:</strong> <a href="https://fetlife.com/VegasToolbox" target="_blank">Vegas Toolbox Fetlife Profile</a></p>
+            <p>Newcomers: If you're new to town, we recommend going to local socials, also known as "Munches", and joining education-based groups, like Vegas Toolbox to meet others, and get some good education.</p>
+            <p><strong>Link:</strong> <a href="https://fetlife.com/VegasToolbox" target="_blank">Vegas Toolbox Fetlife Profile</a></p>
 
 
             
@@ -975,7 +953,7 @@ There are several different schools of thought regarding consent. A few of the m
     </div>
     <div id="dungeon-monitors-content" class="tab-content">
       <h2>Dungeon Monitors</h2>
-      <p>A dungeon monitor, sometimes referred to as a dungeon master or simply DM, is a person charged with supervising a playspace (or "dungeon") at BDSM events such as play parties and fetish clubs. A dungeon monitor may be of any sex or gender, and may normally identify as any role (dominant, submissive, or switch). On duty, their authority is absolute. If a Dungeon Monitor orders a play scene to stop, it must be stopped immediately.</p>
+      <p>A dungeon monitor, sometimes referred to as simply "DM", is a person charged with supervising a playspace (or "dungeon") at BDSM events such as play parties and fetish clubs. A dungeon monitor may be of any sex or gender, and may normally identify as any role (dominant, submissive, or switch). On duty, their authority is absolute. If a Dungeon Monitor orders a play scene to stop, it must be stopped immediately.</p>
       <p>Primary Responsibility: Ensure the physical safety of all participants engaging in BDSM play.</p>
       <p>Structure: In most cases, there is a team of Dungeon Monitors, led by one or more Chief Dungeon Monitors. At private parties, it is typically the host's role to act as a Chief Dungeon Monitor or to nominate an attendee to serve in that capacity, possibly along with one or more additional Dungeon Monitors.</p>
       <p>Responsibilities:</p>

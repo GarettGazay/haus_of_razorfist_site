@@ -1,0 +1,7 @@
+DONE - double slider - need to shorten HOF section
+DONE - mobile response needs to stay the same as desktop
+DONE - conduct a scene should fall under plan a scene
+DONE - add general text
+DONE - plan a scene should be in how to play after risk profiles
+
+

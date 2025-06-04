@@ -1,0 +1,377 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Haus of Razorfist - Info</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+body {
+  font-family: 'Oswald', sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #000000;
+  color: #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+.logo-container {
+  text-align: center;
+  max-width: 800px;
+  width: 100%;
+}
+.logo-placeholder {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+.tab-container {
+  max-width: 800px;
+  width: 100%;
+  background-color: #333333;
+  border-radius: 0px;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  height: 600px;
+  overflow-y: none;
+}
+.tab-buttons {
+  display: flex;
+  flex-direction: column;
+  width: 180px;
+  background-color: #1a1a1a;
+  border-right: 2px solid #660000;
+  flex-shrink: 0;
+}
+.main-tab {
+  display: none;
+}
+.main-tab + label {
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  background-color: #1a1a1a;
+  color: #cc3333;
+  border-bottom: 1px solid #660000;
+  transition: background-color 0.3s, color 0.3s;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.main-tab + label:hover {
+  background-color: #4d0000;
+  color: #ffffff;
+}
+.main-tab:checked + label {
+  background-color: #660000;
+  color: #ffffff;
+  font-weight: 500;
+  border-left: 3px solid #cc3333;
+}
+.subtab-container {
+  display: none;
+  flex-direction: column;
+  background-color: #222222;
+  padding-left: 10px;
+}
+.main-tab:checked ~ .subtab-container {
+  display: flex;
+}
+.sub-tab {
+  display: none;
+}
+.sub-tab + label {
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  background-color: #222222;
+  color: #cc6666;
+  border-bottom: 1px solid #660000;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+.sub-tab + label:hover {
+  background-color: #4d0000;
+  color: #ffffff;
+}
+.subsubtab-container {
+  display: none;
+  flex-direction: column;
+  background-color: #2a2a2a;
+  padding-left: 20px;
+}
+.sub-tab:checked ~ .subsubtab-container {
+  display: flex;
+}
+.subsub-tab {
+  display: none;
+}
+.subsub-tab + label {
+  padding: 8px;
+  text-align: center;
+  cursor: pointer;
+  background-color: #2a2a2a;
+  color: #cc9999;
+  border-bottom: 1px solid #660000;
+  font-size: 10px;
+  letter-spacing: 0.5px;
+}
+.subsub-tab + label:hover {
+  background-color: #4d0000;
+  color: #ffffff;
+}
+.tab-content-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.tab-content {
+  display: none;
+  padding: 20px;
+  box-sizing: border-box;
+  text-align: center;
+  background-color: #333333;
+  border: 2px solid transparent;
+  border-image: linear-gradient(to right, #660000, #cc3333) 1;
+  border-radius: 0 8px 8px 0;
+  flex: 1;
+  overflow-y: auto;
+  color: #e0e0e0;
+}
+.tab-content.active {
+  display: block;
+}
+h2 {
+  color: #cc3333;
+  margin-top: 0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  font-weight: 500;
+}
+p {
+  margin: 10px auto;
+  max-width: 500px;
+  color: #e0e0e0;
+  display: block;
+}
+.kink-list {
+  max-width: 500px;
+  margin: 15px auto;
+  text-align: left;
+}
+.kink-list ul {
+  list-style: none;
+  padding: 0 0 0 20px;
+  margin: 10px 0;
+  border-left: 2px solid #660000;
+}
+.kink-list ul li {
+  position: relative;
+  padding: 5px 0 5px 15px;
+  color: #e0e0e0;
+  font-size: 14px;
+}
+.kink-list ul li:before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #cc3333;
+  font-size: 18px;
+}
+.kink-list ul ul {
+  padding-left: 30px;
+  border-left: 1px solid #4d0000;
+  margin-top: 5px;
+}
+.kink-list ul ul li {
+  font-size: 13px;
+}
+.kink-list h3 {
+  color: #cc3333;
+  font-size: 18px;
+  margin: 15px 0 10px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+/* Media queries for mobile adjustments */
+@media (max-width: 900px) {
+  .tab-buttons {
+    width: 120px; /* Reduced width for tabs on mobile */
+  }
+  .logo-placeholder {
+    width: 100%;
+  }
+  .main-tab + label {
+    font-size: 12px;
+    padding: 8px;
+  }
+  .sub-tab + label {
+    font-size: 10px;
+    padding: 8px;
+  }
+  .subsub-tab + label {
+    font-size: 9px;
+    padding: 6px;
+  }
+  .tab-content {
+    padding: 15px;
+  }
+  .kink-list ul {
+    padding-left: 15px;
+  }
+  .kink-list ul li {
+    font-size: 13px;
+    padding-left: 12px;
+  }
+  .kink-list ul ul {
+    padding-left: 25px;
+  }
+  .kink-list ul ul li {
+    font-size: 12px;
+  }
+  .kink-list h3 {
+    font-size: 16px;
+  }
+}
+@media (max-width: 600px) {
+  .tab-buttons {
+    width: 100px; /* Further reduced width for smaller screens */
+  }
+  .main-tab + label {
+    font-size: 10px;
+    padding: 6px;
+  }
+  .sub-tab + label {
+    font-size: 9px;
+    padding: 6px;
+  }
+  .subsub-tab + label {
+    font-size: 8px;
+    padding: 5px;
+  }
+  .tab-content {
+    padding: 15px;
+  }
+  .kink-list ul {
+    padding-left: 10px;
+  }
+  .kink-list ul li {
+    font-size: 12px;
+    padding-left: 10px;
+  }
+  .kink-list ul ul {
+    padding-left: 20px;
+  }
+  .kink-list ul ul li {
+    font-size: 11px;
+  }
+  .kink-list h3 {
+    font-size: 14px;
+  }
+}
+
+
+/* NAVBAR BELOW HERE */
+.navbar {
+  max-width: 800px;
+  width: 100%;
+  display: flex !important; /* Ensure flex display isn’t overridden */
+  justify-content: space-between;
+  background-color: #1a1a1a;
+  border-radius: 0px;
+  margin: 0;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+  box-sizing: border-box;
+  font-family: 'Oswald', sans-serif;
+  visibility: visible !important; /* Prevent accidental hiding */
+}
+.navbar a {
+  flex: 1;
+  text-align: center;
+  padding: 12px;
+  color: #cc3333 !important; /* Override default link colors */
+  text-decoration: none !important;
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 1px;
+  transition: background-color 0.3s, color 0.3s;
+  border-right: 1px solid #660000;
+  display: block; /* Ensure links behave as blocks */
+}
+.navbar a:last-child {
+  border-right: none;
+}
+.navbar a:hover {
+  background-color: #4d0000;
+  color: #ffffff !important;
+}
+.navbar a.active {
+  background-color: #660000;
+  color: #ffffff !important;
+  font-weight: 500;
+}
+
+/* Media queries for responsive adjustments */
+@media (max-width: 900px) {
+  .navbar {
+    max-width: 100%;
+    visibility: visible !important;
+  }
+  .navbar a {
+    font-size: 12px;
+    padding: 10px;
+  }
+}
+@media (max-width: 600px) {
+  .navbar {
+    max-width: 100%;
+    visibility: visible !important;
+  }
+  .navbar a {
+    font-size: 10px;
+    padding: 8px;
+  }
+}
+/* END OF NAVBAR */
+
+/* SIGNUP  */
+
+
+</style>
+</head>
+<body>
+  <div class="logo-container">
+    <img src="https://hausofrazorfist.com/banner.jpg" alt="Haus of Razorfist Logo" class="logo-placeholder">
+  </div>
+  <div class="navbar">
+    <a href="info.html">Info</a>
+    <a href="signup.html">Signup</a>
+    <a href="calendar.html" class="active">Calendar</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="tab-container">
+    <!-- START CALENDAR FORM -->
+    <div style="margin: 0 auto;"><iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=America%2FLos_Angeles&showPrint=0&src=NWM1ZmMyZjI4MDRiNzAxNDI5ODkxZjMzZjdkZjg5ZWI0ZmViMmJmNzVlMjNlZjViZDEzYzc3OTM5NDI0YTdlMkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=ZW4udXNhI2hvbGlkYXlAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&color=%23c0ca33&color=%230b8043" style="border:solid 1px #777" width="800" height="600" frameborder="0" scrolling="no">
+    </iframe></div>
+    <!-- END CALENDAR FORM -->
+  </div>
+  <script>
+  (function (s, e, n, d, er) {
+    s['Sender'] = er;
+    s[er] = s[er] || function () {
+      (s[er].q = s[er].q || []).push(arguments)
+    }, s[er].l = 1 * new Date();
+    var a = e.createElement(n),
+        m = e.getElementsByTagName(n)[0];
+    a.async = 1;
+    a.src = d;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://cdn.sender.net/accounts_resources/universal.js', 'sender');
+  sender('7c4d2a3c952961')
+  </script>
+</body>
+</html>
