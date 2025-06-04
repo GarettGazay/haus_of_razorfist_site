@@ -338,7 +338,51 @@ p {
 }
 /* END OF NAVBAR */
 
-/* SIGNUP  */
+/* CALENDAR  */
+
+/* CALENDAR STYLES */
+.calendar-container {
+  max-width: 100%;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+.calendar-iframe {
+  width: 100%;
+  max-width: 800px;
+  height: 600px;
+  border: solid 1px #777;
+  box-sizing: border-box;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Media queries for mobile adjustments */
+@media (max-width: 900px) {
+  .calendar-container {
+    padding: 10px;
+  }
+  .calendar-iframe {
+    height: 550px; /* Slightly larger for better readability */
+  }
+  .tab-container {
+    height: auto;
+    min-height: 550px; /* Match iframe height */
+  }
+}
+@media (max-width: 600px) {
+  .calendar-container {
+    padding: 5px;
+  }
+  .calendar-iframe {
+    height: 450px; /* Larger than before but scaled for small screens */
+  }
+  .tab-container {
+    height: auto;
+    min-height: 450px;
+  }
+}
+/* END CALENDAR STYLES */
 
 
 </style>
@@ -350,13 +394,14 @@ p {
   <div class="navbar">
     <a href="info.html">Info</a>
     <a href="signup.html">Signup</a>
-    <a href="calendar.html" class="active">Calendar</a>
+    <a href="calendar.html"  class="active">Calendar</a>
     <a href="contact.html">Contact</a>
   </div>
   <div class="tab-container">
     <!-- START CALENDAR FORM -->
-    <div style="margin: 0 auto;"><iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=America%2FLos_Angeles&showPrint=0&src=NWM1ZmMyZjI4MDRiNzAxNDI5ODkxZjMzZjdkZjg5ZWI0ZmViMmJmNzVlMjNlZjViZDEzYzc3OTM5NDI0YTdlMkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=ZW4udXNhI2hvbGlkYXlAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&color=%23c0ca33&color=%230b8043" style="border:solid 1px #777" width="800" height="600" frameborder="0" scrolling="no">
-    </iframe></div>
+    <div class="calendar-container">
+      <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=America%2FLos_Angeles&showPrint=0&src=NWM1ZmMyZjI4MDRiNzAxNDI5ODkxZjMzZjdkZjg5ZWI0ZmViMmJmNzVlMjNlZjViZDEzYzc3OTM5NDI0YTdlMkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=ZW4udXNhI2hvbGlkYXlAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&color=%23c0ca33&color=%230b8043" class="calendar-iframe" frameborder="0" scrolling="no"></iframe>
+    </div>
     <!-- END CALENDAR FORM -->
   </div>
   <script>
